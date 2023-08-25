@@ -11,11 +11,18 @@ function Square({ value , onSquareClick}) {
 }
 
 export default function Board() {
+	const [xIsNext, setXisNext] = useState(true);
 	const [squares, setSquares] = useState(Array(9).fill(null));
 	function handleClick(i) {
+		if (squares[i])
+			return;
 		const newSquares = squares.slice();
-		newSquares[i] = 'X';
+		if (xIsNext)
+			newSquares[i] = "X";
+		else
+			newSquares[i] = "O";
 		setSquares(newSquares);
+		setXisNext(!xIsNext);
 	}
   return (
 	<React.Fragment>
